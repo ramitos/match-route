@@ -1,8 +1,8 @@
 {
   "name": "match-route",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Match a request against a object of routes",
-  "main": "match-route.js",
+  "main": "src/match-route.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ramitos/match-route"
@@ -13,6 +13,15 @@
     "request",
     "match"
   ],
+  "scripts": {
+    "test": "node test/runner.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "specced": "0.0.6"
+  },
   "author": "Sérgio Ramos <mail@sergioramos.me>",
   "license": "MIT"
 }

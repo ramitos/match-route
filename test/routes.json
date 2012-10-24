@@ -1,0 +1,18 @@
+{
+  "get": {
+    "/user/:id/age": "get./user/:id/age",
+    "/": "get./"
+  },
+  "post": {
+    "/user/:id/:age": "post./user/:id/:age",
+    "/": "post./"
+  },
+  "put": {
+    "/:type/:subtype": "put./:type/:subtype",
+    "/": "put./"
+  },
+  "delete": {
+    "/user/:id": "delete./user/:id",
+    "/": "delete./"
+  }
+}

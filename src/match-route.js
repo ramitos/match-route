@@ -1,3 +1,7 @@
+var qs = require('querystring'),
+    regex = require('./regex'),
+    url = require('url')
+
 module.exports = function (req, routes, callback) {
   var method = req.method.toLowerCase()
   var parsedurl = url.parse(req.url)

@@ -1,0 +1,56 @@
+{
+  "query": {
+    "post": {
+      "method": "POST",
+      "url": "/user/5/21?q1=2&q2=t"
+    },
+    "put": {
+      "method": "PUT",
+      "url": "/user/admin?q1=3&q2=t"
+    },
+    "del": {
+      "method": "DELETE",
+      "url": "/user/5?q1=3&q2=t"
+    },
+    "get": {
+      "method": "GET",
+      "url": "/user/5/age?q1=3&q2=t"
+    }
+  },
+  "params": {
+    "post": {
+      "method": "POST",
+      "url": "/user/5/21"
+    },
+    "put": {
+      "method": "PUT",
+      "url": "/user/admin"
+    },
+    "del": {
+      "method": "DELETE",
+      "url": "/user/5"
+    },
+    "get": {
+      "method": "GET",
+      "url": "/user/5/age"
+    }
+  },
+  "routing": {
+    "post": {
+      "method": "POST",
+      "url": "/"
+    },
+    "put": {
+      "method": "PUT",
+      "url": "/"
+    },
+    "del": {
+      "method": "DELETE",
+      "url": "/"
+    },
+    "get": {
+      "method": "GET",
+      "url": "/"
+    }
+  }
+}
