@@ -1,5 +1,5 @@
-var qs = require('querystring'),
-    regex = require('./regex'),
+var regex = require('path-to-regexp'),
+    qs = require('querystring'),
     url = require('url')
 
 module.exports = function (req, routes, callback) {

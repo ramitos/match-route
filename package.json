@@ -1,6 +1,6 @@
 {
   "name": "match-route",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Match a request against a object of routes",
   "main": "src/match-route.js",
   "repository": {
@@ -19,8 +19,11 @@
   "directories": {
     "test": "test"
   },
+  "dependencies": {
+    "path-to-regexp": "0.0.x"
+  },
   "devDependencies": {
-    "specced": "0.0.6"
+    "specced": "0.0.x"
   },
   "author": "Sérgio Ramos <mail@sergioramos.me>",
   "license": "MIT"
