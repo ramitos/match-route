@@ -1,0 +1,16 @@
+{
+  "name": "match-route",
+  "repo": "ramitos/match-route",
+  "description": "Match a request against a object of routes",
+  "version": "0.0.1",
+  "keywords": ["routes", "http", "request", "match"],
+  "dependencies": {
+    "component/path-to-regexp": "0.0.1",
+    "component/querystring": "0.0.1",
+    "component/url": "0.1.0"
+  },
+  "development": {
+    "component/assert": "0.1.1"
+  },
+  "scripts": ["src/match-route.js"]
+}
