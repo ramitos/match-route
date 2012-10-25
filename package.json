@@ -1,6 +1,6 @@
 {
   "name": "match-route",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "description": "Match a request against a object of routes",
   "author": "Sérgio Ramos <mail@sergioramos.me>",
