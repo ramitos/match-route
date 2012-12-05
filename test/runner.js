@@ -21,7 +21,3 @@ test.run(function (e) {
   console.log('all passed')
   process.exit(0)
 })
-
-// ,
-// params: require('./specs/params'),
-// query: require('./specs/query')
