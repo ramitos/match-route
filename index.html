@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
+    <link href='css/bootstrap-responsive.css' rel='stylesheet' type='text/css'>
+    <link href='css/docs.css' rel='stylesheet' type='text/css'>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link href='codemirror/lib/codemirror.css' rel='stylesheet' type='text/css'>
+    <link href='codemirror/theme/lesser-dark.css' rel='stylesheet' type='text/css'>
+    <script src='codemirror/lib/codemirror.js'></script>
+    <script src='codemirror/mode/javascript/javascript.js'></script>
+    <script src='build/build.js'></script>
+    <title>ramitos/match-route</title>
+  </head>
+  <body>
+    <div class='jumbotron masthead'>
+      <div class='container'>
+        <h1>match-route</h1>
+        <p>match a request against a object of routes</p>
+        <p><a href='https://github.com/ramitos/match-route' class='btn btn-primary btn-large'>Github project</a></p>
+      </div>
+    </div>
+    <div class='bs-docs-social'>
+      <div class='container'>
+        <textarea id='editor' class='span12'>
+{
+  "get": {
+    "/user/:id/age": "/user/:id/age",
+    "/": "/"
+  },
+  "post": {
+    "/user/:id/:age": "/user/:id/:age"
+  },
+  "put": {
+    "/:type/:subtype": "/:type/:subtype"
+  },
+  "delete": {
+    "/user/:id": "/user/:id"
+  }
+}
+        </textarea>
+        <div class='alert alert-error hidden' id='invalidroutes'>
+          <button type='button' id='invalidroutesclose' class='close' data-dismiss='alert'>x</button>
+          <strong>Oh snap!</strong> invalid JSON
+        </div>
+        <form class='form-horizontal'>
+          <div class='row'>
+            <select class='span2' id='method'>
+              <option>GET</option>
+              <option>PUT</option>
+              <option>POST</option>
+              <option>DELETE</option>
+            </select>
+            <input type='text' class='input span8' id='url' value='/user/12/age?t=212'>
+            <button id='match' class='btn span2'>match</button>
+          </div>
+        </form>
+        <div class='results'>
+          <div class='input-prepend'>
+            <span class='add-on'>route</span>
+            <input type='text' class='input span11' id='route' disabled>
+          </div>
+          <h4>params</h4>
+          <table class='table table-bordered'>
+            <tbody id='params'></tbody>
+          </table>
+          <h4>query</h4>
+          <table class='table table-bordered'>
+            <tbody id='query'></tbody>
+          </table>
+        </div>
+      </div>
+        <div class='footer'>
+          <div class='container'>
+            <h2>installation</h2>
+            <h4>
+              <a href='https://github.com/component/component'>component/component</a>
+            </h4>
+            <pre>$ component install [--dev] ramitos/match-route</pre>
+            <h4>npm</h4>
+            <pre>$ npm install [--save/--save-dev] match-route</pre>
+            <h2>example</h2>
+            <pre>
+var mr = require('match-route'),
+    assert = require('assert');
+        
+mr({
+  method: 'PUT',
+  url: '/user/admin?q1=3&q2=t'
+}, {
+  'get': {
+    '/user/:id/age': '/user/:id/age',
+    '/': '/'
+  },
+  'post': {
+    '/user/:id/:age': '/user/:id/:age',
+    '/': '/'
+  },
+  'put': {
+    '/:type/:subtype': '/:type/:subtype',
+    '/': '/'
+  },
+  'delete': {
+    '/user/:id': '/user/:id',
+    '/': '/'
+  }
+}, function (route, params, query) {
+  assert(route === '/:type/:subtype');
+  assert(params.subtype === 'admin');
+  assert(params.type === 'user');
+  assert(query.q1 === '3');
+  assert(query.q2 === 't');
+});</pre>
+            <h2>license</h2>
+            <p>MIT</p>
+          </div>
+        </div>
+    
+        <script src='js/script.js'></script>
+  </body>
+</html>
