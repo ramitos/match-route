@@ -255,9 +255,40 @@ exports.right = function(str){
 };
 
 });
+require.register("redventures-reduce/index.js", function(module, exports, require){
+
+/**
+ * Reduce `arr` with `fn`.
+ *
+ * @param {Array} arr
+ * @param {Function} fn
+ * @param {Mixed} initial
+ *
+ * TODO: combatible error handling?
+ */
+
+module.exports = function(arr, fn, initial){
+  var idx = 0;
+  var len = arr.length;
+  var curr = arguments.length == 3
+    ? initial
+    : arr[idx++];
+
+  while (idx < len) {
+    curr = fn.call(null, curr, arr[idx], ++idx, arr);
+  }
+
+  return curr;
+};
+});
 require.register("component-querystring/index.js", function(module, exports, require){
 
-// TODO: use trim component
+/**
+ * Module dependencies.
+ */
+
+var trim = require('trim')
+  , reduce = require('reduce');
 
 /**
  * Parse the given query `str`.
@@ -269,17 +300,15 @@ require.register("component-querystring/index.js", function(module, exports, req
 
 exports.parse = function(str){
   if ('string' != typeof str) return {};
-  str = str.trim();
+  str = trim(str);
   if ('' == str) return {};
-  return str
-    .split('&')
-    .reduce(function(obj, pair){
-      var parts = pair.split('=');
-      obj[parts[0]] = null == parts[1]
-        ? ''
-        : decodeURIComponent(parts[1]);
-      return obj;
-    }, {});
+  return reduce(str.split('&'), function(obj, pair){
+    var parts = pair.split('=');
+    obj[parts[0]] = null == parts[1]
+      ? ''
+      : decodeURIComponent(parts[1]);
+    return obj;
+  }, {});
 };
 
 /**
@@ -314,15 +343,15 @@ exports.parse = function(url){
   a.href = url;
   return {
     href: a.href,
-    host: a.host || location.host,
-    port: a.port || location.port,
+    host: a.host,
+    port: a.port,
     hash: a.hash,
-    hostname: a.hostname || location.hostname,
+    hostname: a.hostname,
     pathname: a.pathname,
-    protocol: !a.protocol || ':' == a.protocol ? location.protocol : a.protocol,
+    protocol: a.protocol,
     search: a.search,
     query: a.search.slice(1)
-  };
+  }
 };
 
 /**
@@ -334,7 +363,9 @@ exports.parse = function(url){
  */
 
 exports.isAbsolute = function(url){
-  return 0 == url.indexOf('//') || !!~url.indexOf('://');
+  if (0 == url.indexOf('//')) return true;
+  if (~url.indexOf('://')) return true;
+  return false;
 };
 
 /**
@@ -346,7 +377,7 @@ exports.isAbsolute = function(url){
  */
 
 exports.isRelative = function(url){
-  return !exports.isAbsolute(url);
+  return ! exports.isAbsolute(url);
 };
 
 /**
@@ -359,9 +390,9 @@ exports.isRelative = function(url){
 
 exports.isCrossDomain = function(url){
   url = exports.parse(url);
-  return url.hostname !== location.hostname
-    || url.port !== location.port
-    || url.protocol !== location.protocol;
+  return url.hostname != location.hostname
+    || url.port != location.port
+    || url.protocol != location.protocol;
 };
 });
 require.register("match-route/src/match-route.js", function(module, exports, require){
@@ -376,7 +407,8 @@ module.exports = function (req, routes, callback) {
   var query = qs.parse(querystring);
   var pathname = parsedurl.pathname;
   var params = new Object();
-  var matchroute = null;
+  var value = null;
+  var mroute = '';
 
   Object.keys(routes[method]).forEach(function (route) {
     var keys = new Array();
@@ -385,20 +417,23 @@ module.exports = function (req, routes, callback) {
     if(!match) return;
 
     match.shift();
-    matchroute = routes[method][route];
+    value = routes[method][route];
+    mroute = route;
 
     match.forEach(function (param, index) {
       params[keys[index].name] = param;
     });
   });
 
-  callback(matchroute, params, query);
+  callback(value, mroute, params, query);
 };
 });
 require.alias("component-path-to-regexp/index.js", "match-route/deps/path-to-regexp/index.js");
 
 require.alias("component-querystring/index.js", "match-route/deps/querystring/index.js");
 require.alias("component-trim/index.js", "component-querystring/deps/trim/index.js");
+
+require.alias("redventures-reduce/index.js", "component-querystring/deps/reduce/index.js");
 
 require.alias("component-url/index.js", "match-route/deps/url/index.js");
 
