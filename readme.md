@@ -42,7 +42,7 @@ mr({
 }, function (value, route, params, query) {
   assert(route === '/:type/:subtype');
   assert(params.subtype === 'admin');
-  assert(value === '/other string');
+  assert(value === 'other string');
   assert(params.type === 'user');
   assert(query.q1 === '3');
   assert(query.q2 === 't');
