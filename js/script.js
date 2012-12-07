@@ -24,10 +24,10 @@ document.getElementById('match').addEventListener('click', function (e) {
   mr({
     method: method,
     url: url
-  }, routes, function (route, params, query) {
+  }, routes, function (value, params, query) {
     document.getElementById('params').innerHTML = '';
     document.getElementById('query').innerHTML = '';
-    document.getElementById('route').value = route;
+    document.getElementById('value').value = value;
     Object.keys(params).forEach(function (param) {
       var tr = document.createElement('tr');
       tr.innerHTML = "<td>" + param + "</td><td>" + params[param] + "</td>";
@@ -46,11 +46,3 @@ document.getElementById('invalidroutesclose').addEventListener('click', function
   e.preventDefault();
   document.getElementById('invalidroutes').classList.toggle('hidden');
 });
-
-
-// <tr>
-//   <td rowspan="2">1</td>
-//   <td>Mark</td>
-//   <td>Otto</td>
-//   <td>@mdo</td>
-// </tr>

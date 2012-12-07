@@ -25,17 +25,17 @@
         <textarea id='editor' class='span12'>
 {
   "get": {
-    "/user/:id/age": "/user/:id/age",
-    "/": "/"
+    "/user/:id/age": "some string",
+    "/": true
   },
   "post": {
-    "/user/:id/:age": "/user/:id/:age"
+    "/user/:id/:age": 45
   },
   "put": {
-    "/:type/:subtype": "/:type/:subtype"
+    "/:type/:subtype": "othe string"
   },
   "delete": {
-    "/user/:id": "/user/:id"
+    "/user/:id": false
   }
 }
         </textarea>
@@ -57,8 +57,8 @@
         </form>
         <div class='results'>
           <div class='input-prepend'>
-            <span class='add-on'>route</span>
-            <input type='text' class='input span11' id='route' disabled>
+            <span class='add-on'>value</span>
+            <input type='text' class='input span11' id='value' disabled>
           </div>
           <h4>params</h4>
           <table class='table table-bordered'>
@@ -89,20 +89,17 @@ mr({
   url: '/user/admin?q1=3&q2=t'
 }, {
   'get': {
-    '/user/:id/age': '/user/:id/age',
-    '/': '/'
+    '/user/:id/age': 'some string',
+    '/': true
   },
   'post': {
-    '/user/:id/:age': '/user/:id/:age',
-    '/': '/'
+    '/user/:id/:age': 45
   },
   'put': {
-    '/:type/:subtype': '/:type/:subtype',
-    '/': '/'
+    '/:type/:subtype': 'other string'
   },
   'delete': {
-    '/user/:id': '/user/:id',
-    '/': '/'
+    '/user/:id': false
   }
 }, function (route, params, query) {
   assert(route === '/:type/:subtype');
