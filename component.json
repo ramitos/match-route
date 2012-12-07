@@ -1,14 +1,14 @@
 {
   "name": "match-route",
   "repo": "ramitos/match-route",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Match a request against a object of routes",
   "twitter": "@ramitos",
   "license": "MIT",
   "dependencies": {
-    "component/path-to-regexp": "0.0.1",
-    "component/querystring": "0.0.1",
-    "component/url": "0.1.0"
+    "component/path-to-regexp": "*",
+    "component/querystring": "*",
+    "component/url": "*"
   },
   "development": {
     "component/assert": "*"

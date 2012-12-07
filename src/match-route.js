@@ -9,7 +9,8 @@ module.exports = function (req, routes, callback) {
   var query = qs.parse(querystring);
   var pathname = parsedurl.pathname;
   var params = new Object();
-  var matchroute = null;
+  var value = null;
+  var mroute = '';
 
   Object.keys(routes[method]).forEach(function (route) {
     var keys = new Array();
@@ -18,12 +19,13 @@ module.exports = function (req, routes, callback) {
     if(!match) return;
 
     match.shift();
-    matchroute = routes[method][route];
+    value = routes[method][route];
+    mroute = route;
 
     match.forEach(function (param, index) {
       params[keys[index].name] = param;
     });
   });
 
-  callback(matchroute, params, query);
+  callback(value, mroute, params, query);
 };

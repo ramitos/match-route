@@ -5,32 +5,36 @@ var interpolate = require('util').format,
 module.exports = function (helpers, callback) {
   var on = new Object()
 
-  on.post = function (route, params, query) {
+  on.post = function (value, route, params, query) {
     assert(Object.keys(params).length === 2)
     assert(Object.keys(query).length === 0)
-    assert(route === 'post./user/:id/:age')
+    assert(value === 'post./user/:id/:age')
+    assert(route === '/user/:id/:age')
     assert(params.age === '21')
     assert(params.id === '5')
   }
 
-  on.del = function (route, params, query) {
+  on.del = function (value, route, params, query) {
     assert(Object.keys(params).length === 1)
     assert(Object.keys(query).length === 0)
-    assert(route === 'delete./user/:id')
+    assert(value === 'delete./user/:id')
+    assert(route === '/user/:id')
     assert(params.id === '5')
   }
 
-  on.get = function (route, params, query) {
+  on.get = function (value, route, params, query) {
     assert(Object.keys(params).length === 1)
     assert(Object.keys(query).length === 0)
-    assert(route === 'get./user/:id/age')
+    assert(value === 'get./user/:id/age')
+    assert(route === '/user/:id/age')
     assert(params.id === '5')
   }
 
-  on.put = function (route, params, query) {
+  on.put = function (value, route, params, query) {
     assert(Object.keys(params).length === 2)
     assert(Object.keys(query).length === 0)
-    assert(route === 'put./:type/:subtype')
+    assert(value === 'put./:type/:subtype')
+    assert(route === '/:type/:subtype')
     assert(params.subtype === 'admin')
     assert(params.type === 'user')
   }

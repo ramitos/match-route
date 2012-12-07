@@ -5,28 +5,32 @@ var interpolate = require('util').format,
 module.exports = function (helpers, callback) {
   var on = new Object()
   
-  on.post = function (route, params, query) {
+  on.post = function (value, route, params, query) {
     assert(Object.keys(params).length === 0)
     assert(Object.keys(query).length === 0)
-    assert(route === 'post./')
+    assert(value === 'post./')
+    assert(route === '/')
   }
   
-  on.del = function (route, params, query) {
+  on.del = function (value, route, params, query) {
     assert(Object.keys(params).length === 0)
     assert(Object.keys(query).length === 0)
-    assert(route === 'delete./')
+    assert(value === 'delete./')
+    assert(route === '/')
   }
   
-  on.get = function (route, params, query) {
+  on.get = function (value, route, params, query) {
     assert(Object.keys(params).length === 0)
     assert(Object.keys(query).length === 0)
-    assert(route === 'get./')
+    assert(value === 'get./')
+    assert(route === '/')
   }
   
-  on.put = function (route, params, query) {
+  on.put = function (value, route, params, query) {
     assert(Object.keys(params).length === 0)
     assert(Object.keys(query).length === 0)
-    assert(route === 'put./')
+    assert(value === 'put./')
+    assert(route === '/')
   }
   
   mr(helpers.requests.routing.post, helpers.routes, on.post)
