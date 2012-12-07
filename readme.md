@@ -7,7 +7,7 @@ Match a request against a object of routes
 #### [component/component](https://github.com/component/component)
 
 ```bash
-$ component install [--save/--save-dev] ramitos/match-route
+$ component install [--dev] ramitos/match-route
 ```
 
 #### npm
@@ -27,22 +27,19 @@ mr({
   url: '/user/admin?q1=3&q2=t'
 }, {
   'get': {
-    '/user/:id/age': '/user/:id/age',
-    '/': '/'
+    '/user/:id/age': 'some string',
+    '/': true
   },
   'post': {
-    '/user/:id/:age': '/user/:id/:age',
-    '/': '/'
+    '/user/:id/:age': 45
   },
   'put': {
-    '/:type/:subtype': '/:type/:subtype',
-    '/': '/'
+    '/:type/:subtype': 'other string'
   },
   'delete': {
-    '/user/:id': '/user/:id',
-    '/': '/'
+    '/user/:id': false
   }
-}, function (route, params, query) {
+}, function (value, route, params, query) {
   assert(route === '/:type/:subtype');
   assert(params.subtype === 'admin');
   assert(params.type === 'user');
