@@ -60,6 +60,10 @@
             <span class='add-on'>value</span>
             <input type='text' class='input span11' id='value' disabled>
           </div>
+          <div class='input-prepend'>
+            <span class='add-on'>route</span>
+            <input type='text' class='input span11' id='route' disabled>
+          </div>
           <h4>params</h4>
           <table class='table table-bordered'>
             <tbody id='params'></tbody>
@@ -101,7 +105,7 @@ mr({
   'delete': {
     '/user/:id': false
   }
-}, function (route, params, query) {
+}, function (value, route, params, query) {
   assert(route === '/:type/:subtype');
   assert(params.subtype === 'admin');
   assert(params.type === 'user');

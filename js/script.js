@@ -24,10 +24,11 @@ document.getElementById('match').addEventListener('click', function (e) {
   mr({
     method: method,
     url: url
-  }, routes, function (value, params, query) {
+  }, routes, function (value, route, params, query) {
     document.getElementById('params').innerHTML = '';
     document.getElementById('query').innerHTML = '';
     document.getElementById('value').value = value;
+    document.getElementById('route').value = route;
     Object.keys(params).forEach(function (param) {
       var tr = document.createElement('tr');
       tr.innerHTML = "<td>" + param + "</td><td>" + params[param] + "</td>";
