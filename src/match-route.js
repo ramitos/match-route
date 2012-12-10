@@ -12,7 +12,8 @@ module.exports = function (req, routes, callback) {
   var value = null;
   var mroute = '';
 
-  Object.keys(routes[method]).forEach(function (route) {
+  
+  if(routes[method]) Object.keys(routes[method]).forEach(function (route) {
     var keys = new Array();
     var rexp = regex(route, keys, false, false);
     var match = pathname.match(rexp);

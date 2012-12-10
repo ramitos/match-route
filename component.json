@@ -1,7 +1,7 @@
 {
   "name": "match-route",
   "repo": "ramitos/match-route",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Match a request against a object of routes",
   "twitter": "@ramitos",
   "license": "MIT",
